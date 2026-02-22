@@ -1,0 +1,39 @@
+import 'package:socket_io_client/socket_io_client.dart' as IO;
+
+class SocketClient {
+  IO.Socket? socket;
+  static SocketClient? _instance;
+
+  SocketClient._internal() {
+    socket = IO.io(
+      "http://localhost:3000", 
+      <String, dynamic>{
+        'transports': ['websocket'],
+        'autoConnect': false,
+      },
+    );
+
+    socket!.connect();
+
+    socket!.onConnect((_) {
+      print("SOCKET CONNECTED");
+    });
+
+    socket!.onDisconnect((_) {
+      print("SOCKET DISCONNECTED");
+    });
+
+    socket!.onConnectError((err) {
+      print("CONNECT ERROR: $err");
+    });
+
+    socket!.onError((err) {
+      print("sSOCKET ERROR: $err");
+    });
+  }
+
+  static SocketClient get instance {
+    _instance ??= SocketClient._internal();
+    return _instance!;
+  }
+}
