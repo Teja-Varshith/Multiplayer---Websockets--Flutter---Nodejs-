@@ -60,7 +60,7 @@ io.on("connection", (socket) => {
 
 app.use(express.json());
 
-const db = mongoose.connect("mongodb+srv://teja:1616@sockts.t4aifpc.mongodb.net/main").then(()=>{
+const db = mongoose.connect("").then(()=>{
     console.log('Db connected');
     server.listen(3000, "0.0.0.0", () =>{
     console.log("connected and listening at 3k");
