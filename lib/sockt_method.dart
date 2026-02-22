@@ -40,6 +40,14 @@ class SocketMethods {
     });
   }
 
+  void updatePlayerListner(BuildContext context) {
+    socket!.on("updatePlayers", (players) {
+      print("THE PLAYERS ARE UPDTDD $players[0] $players[1]");
+      Provider.of<RoomDataProvider>(context,listen: false).updatePlayer1(players[0]);
+      Provider.of<RoomDataProvider>(context,listen: false).updatePlayer2(players[1]);
+    });
+  }
+
 
 
 

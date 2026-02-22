@@ -22,6 +22,7 @@ class _JoinroomscreenState extends State<Joinroomscreen> {
   void initState() {
     super.initState();
     _socketMethods.joinRoomSucessListeners(context);
+    _socketMethods.updatePlayerListner(context);
   }
 
 

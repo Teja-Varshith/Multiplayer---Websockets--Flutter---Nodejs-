@@ -11,12 +11,22 @@ class Gamescreen extends StatefulWidget {
 }
 
 class _GamescreenState extends State<Gamescreen> {
+  final SocketMethods _socketMethods = SocketMethods();
+
+  @override
+  void initState() {
+    _socketMethods.joinRoomSucessListeners(context);
+    super.initState();
+  }
+  
   @override
   Widget build(BuildContext context) {
+    final RoomDataProvider roomData = Provider.of<RoomDataProvider>(context);
     return Scaffold(
-      body:  Center(
+      body:  (roomData.roomData['isJoin']) ? CircularProgressIndicator() :
+       Center(
         child: Text(
-          Provider.of<RoomDataProvider>(context).roomData.toString(),
+          roomData.player1.nickName
         )
       ),
     );
