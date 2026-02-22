@@ -21,6 +21,9 @@ class _CreateroomState extends State<Createroom> {
   void initState() {
     super.initState();
     _socketMethods.roomCreateListn(context);
+    _socketMethods.joinRoomSucessListeners(context);
+    _socketMethods.updatePlayerListner(context);
+    
   }
 
   @override

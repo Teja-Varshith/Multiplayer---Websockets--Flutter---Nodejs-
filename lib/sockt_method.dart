@@ -48,6 +48,26 @@ class SocketMethods {
     });
   }
 
+  void onTap(int index, String roomId, List<String> elements){
+      if(elements[index] == ''){
+        socket!.emit('tap',{
+          "index": index,
+          "roomId": roomId
+        });
+      }
+  }
+
+  void onTapListner(BuildContext context){
+    socket!.on(
+      'tapped',
+      (data) {
+        RoomDataProvider room = Provider.of<RoomDataProvider>(context,listen: false);
+        room.updateDisplayElements(data['index'], data['choice']);
+        room.updateRoom(data['room']);
+      }
+    );
+  }
+
 
 
 
